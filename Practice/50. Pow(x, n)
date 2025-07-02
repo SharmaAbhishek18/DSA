@@ -1,0 +1,18 @@
+class Solution {
+
+    public double solve(double x, long n) {
+
+        if(n==0) return 1;
+        //For negative powers, x⁻ⁿ = (1/x)ⁿ
+        if(n<0) return solve(1/x,-n);
+
+        //Even Power:E.g., x^8 = (x^2)^4
+        if(n%2==0) return solve(x*x,n/2);
+
+        //Odd Power:E.g., x^5 = x * (x^2)^2
+        else return x * solve(x*x, (n-1)/2);
+    }
+        public double myPow(double x, int n) {
+           return solve(x ,(long)n);//long so that it fits in 32bit int 
+        }
+    }
