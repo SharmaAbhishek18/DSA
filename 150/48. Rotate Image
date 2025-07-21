@@ -1,0 +1,32 @@
+//Time Complexity: O(n²)
+// Any algorithm must touch all n² elements at least once to rotate them, so O(n²) is the best possible.
+class Solution {
+    public void rotate(int[][] matrix) {
+        transposeMatrix(matrix);
+        reverseRows(matrix);
+    }
+    private void transposeMatrix(int matrix[][]){
+        for(int i=0; i<matrix.length; i++){//for rows
+            for(int j = 0; j<=i; j++){//for columns
+                int temp = matrix[i][j];
+                matrix[i][j] = matrix[j][i];
+                matrix[j][i] = temp;
+            }
+        }
+    }
+    private void reverseRows(int matrix[][]){
+        for(int i = 0; i < matrix.length; i++){//rows
+            int left = 0;
+            int right = matrix.length-1;
+            while(left < right){
+                int temp = matrix[i][left];
+                //e.g 0th row leftmost element = 0th row rightmost Element
+                matrix[i][left] = matrix[i][right];
+                matrix[i][right] = temp;
+                left++;
+                right--;
+                
+            }
+        }
+    }
+}
