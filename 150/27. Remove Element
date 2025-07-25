@@ -1,0 +1,20 @@
+class Solution { //T.C -> O(N) S.C->O(1)
+    public int removeElement(int[] nums, int val) {
+
+        int lp = 0 ,rp = 0;
+
+        while(rp < nums.length){
+        //if rightpoiner value is Equal to val then move right pointer ++
+            if(nums[rp] == val){
+                rp++;
+            }
+        //if value of rp is other than val then copy the value of rp to lp and then lp++ rp++
+            else{
+                 nums[lp] = nums[rp];
+                 lp++;
+                 rp++;
+            }
+        }
+        return lp;
+    }
+}
