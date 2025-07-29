@@ -1,0 +1,19 @@
+class Solution { //T.c->O(n log n)  S.C->O(1)
+    public String longestCommonPrefix(String[] strs) {
+    
+//Because any common prefix of all strings must be a prefix of both the first & last strings in sorted order.
+      Arrays.sort(strs);
+//Instead of comparing every string with every other, sorting ensures the most different strings are at // the two ends. So their common prefix must be the global prefix.
+      String first = strs[0];
+      String last = strs[strs.length-1];
+      int i = 0;
+
+    //This loop keeps comparing characters of first and last one-by-one.
+      while(i<first.length() && i<last.length() && first.charAt(i)==last.charAt(i))
+      {
+        i++;
+      }    
+      //Extracts the prefix from 0 to i, which is the longest common prefix.
+      return first.substring(0,i);
+    }
+}
