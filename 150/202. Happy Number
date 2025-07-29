@@ -1,0 +1,21 @@
+class Solution {
+    public boolean isHappy(int n) {
+        HashSet<Integer> hs = new HashSet<>();
+
+        //If hashSet doesn't contain the number then only proceed further
+         while(!hs.contains(n)){
+            hs.add(n); // E.g: 19
+            int sqrSum = 0;
+            while(n != 0){ // 19 != 0 go on 
+                int rem = n % 10; //rem = 9
+                sqrSum += rem * rem; //sqrSum = 81
+                n = n / 10; // 1 again 1 != 0 ->  rem =1 -> 1 * 1 = 1 add in sqrsum
+            }
+            if(sqrSum == 1) return true;
+            else n = sqrSum;
+        } 
+        return  false;
+
+       
+    }
+}
