@@ -1,0 +1,30 @@
+class Solution {
+    public int[][] merge(int[][] intervals) {
+        
+        if(intervals.length <= 1){
+            return intervals;
+        }
+        //Sort all intervals On the basis of their first element
+        Arrays.sort(intervals,Comparator.comparingInt(i->i[0]));
+
+        List<int[]> result = new ArrayList<>();
+
+        //Add the First Inteval
+        int [] newInterval = intervals[0];
+        result.add(newInterval);
+
+        for(int [] interval : intervals){
+            
+        //check if the end of interval[0] is less than the start of the interval[1] 
+            if(interval[0] <= newInterval[1]){
+                newInterval[1] = Math.max(newInterval[1],interval[1]);
+            }
+            else{
+                newInterval = interval;
+                //add the new Interval to the list 
+                result.add(newInterval);
+            }
+        }
+        return result.toArray(new int [result.size()][]);
+    }
+}
