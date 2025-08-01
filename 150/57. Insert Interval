@@ -1,0 +1,35 @@
+class Solution { //T.C-> O(n) S.C -> : O(n) for the result list
+    public int[][] insert(int[][] intervals, int[] newInterval) {
+
+        ArrayList<int[]>res = new ArrayList<>();
+
+        //Store Intervals Before Overlap
+        int i = 0;
+        int n = intervals.length;
+
+        //END < START 
+        while(i < n && intervals[i][1] < newInterval[0] ){
+            res.add(intervals[i]);
+            i++;
+        }
+
+        //Merge Overlapping Intervals if any
+        while(i < n &&  newInterval[1] >= intervals[i][0] ){
+            
+            //Minimum of (newInterval Starting and intervals starting) 
+            newInterval[0] = Math.min(newInterval[0],intervals[i][0]);
+            
+            //Maximum of (newInterval Ending and intervals ending)
+            newInterval[1] = Math.max(newInterval[1],intervals[i][1]);
+            i++;
+        }
+        
+        res.add(newInterval);
+        //append the Remaining Intervals
+        while(i < n){
+            res.add(intervals[i]);
+            i++;
+        }
+    return res.toArray(new int[res.size()][]); //res.size determines total interval
+    }
+}
