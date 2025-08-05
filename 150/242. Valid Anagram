@@ -1,0 +1,21 @@
+//With HashMap Unicode characters will work check for anagram 
+public class Solution { //T.C->O(N) S.C-> O(N)
+    public static boolean isAnagram(String s, String t) {
+
+    HashMap<Character,Integer> map = new HashMap<>();
+
+    if(s.length() != t.length()) return false;
+
+    for(int i = 0; i < s.length(); i++){
+        char s1 = s.charAt(i);
+        char t1 = t.charAt(i);
+
+        map.put(s1,map.getOrDefault(s1,0) + 1);// count char in s
+        map.put(t1,map.getOrDefault(t1,0) - 1); // subtract count for char in t
+    }
+    for(int i: map.values()){
+        if(i != 0) return false;// if any char count is non-zero, not an anagram
+    }
+    return true;
+    }
+}
