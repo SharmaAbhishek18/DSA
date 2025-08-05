@@ -1,0 +1,26 @@
+//APPROACH -1 TIME COMPLEXITY O(N * K log K)
+class Solution {//T.C->	O(N * K log K) S.C -> O(N * K)
+
+    public List<List<String>> groupAnagrams(String[] strs) {
+        
+        if (strs == null || strs.length == 0) return new ArrayList<>();
+        // Keys: Sorted versions of the strings (like "aet" for "eat")
+        // Values: List of original strings that match this sorted key.
+        HashMap<String,List<String>> map = new HashMap<>();
+
+        //Convert string to char array → sort → create a key.
+        for(String  s:strs){
+            char [] ca = s.toCharArray();
+            Arrays.sort(ca);
+            String sortedString = new String(ca);
+
+            // Create a new list if key doesn't exist.
+            // Add the original string to the correct group.
+            if(map.containsKey(sortedString) == false){
+                map.put(sortedString,new ArrayList<>());
+            }
+            map.get(sortedString).add(s); 
+        }
+        return new ArrayList<>(map.values());
+    }
+}
