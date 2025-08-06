@@ -1,0 +1,33 @@
+class MinStack { //T.C -> O(1)  S.C -> O(N)
+    Stack<Integer> stack = new Stack<>();
+    Stack<Integer> minStack = new Stack<>();
+
+    public MinStack() {
+      //No need to write this .we can remove this whole constructor as well
+    }
+    
+    public void push(int val) {
+        stack.push(val);
+    //If the minStack is empty or new value is less than equal to the top of the
+    //minStack,push it onto the minStack
+        if(minStack.isEmpty() || val <= minStack.peek()){
+            minStack.push(val);
+        }
+    }
+    
+    public void pop() {
+        int poppedValue = stack.pop();
+        //If poppedValue == top of the minsStack,
+        //pop it from the minStack as well
+        if(poppedValue == minStack.peek()) minStack.pop();
+    }
+    
+    public int top() {
+        return stack.peek();
+    }
+    
+    public int getMin() {
+        return minStack.peek();
+    }
+}
+
