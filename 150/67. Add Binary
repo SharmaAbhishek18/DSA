@@ -1,0 +1,27 @@
+class Solution {//Time Complexity: O(max(n, m)) Space Complexity: O(max(n, m))
+    public String addBinary(String a, String b) {
+        
+        StringBuilder sb = new StringBuilder();
+        int i = a.length() - 1;// pointer to last character of a
+        int j = b.length() - 1;// pointer to last character of b
+        int carry = 0;
+
+        while(i >= 0 || j>= 0 || carry == 1){
+            int sum = carry;// Start each iteration with carry
+
+            if( i >= 0){
+                sum = sum + a.charAt(i) - '0';
+                i--;
+            }
+
+            if( j >= 0){
+                sum = sum + b.charAt(j) - '0';
+                j--;
+            }
+
+        sb.append(sum % 2);// Add current binary digit
+        carry = sum / 2;// Update carry for next iteration
+    }
+        return sb.reverse().toString();//reverse it as we start from end 
+    }
+}
