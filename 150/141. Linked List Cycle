@@ -1,0 +1,17 @@
+ //T.C:O(n) and S.C: O(1)
+public class Solution {
+    public boolean hasCycle(ListNode head) {
+
+        //Two pointers fast and slow
+       ListNode slow = head,fast = head;
+       while(fast !=null && fast.next != null){
+        //Using Floyd's Cycle Algorithm
+        fast = fast.next.next;
+        slow = slow.next;
+        if(fast !=null && fast.equals(slow)){
+            return true;//Forming a Cycle
+        }
+    } 
+    return false;//No cycle
+}
+}
