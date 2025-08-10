@@ -1,0 +1,28 @@
+class Solution {//T.c->O(log(m * n)) 
+    public boolean searchMatrix(int[][] matrix, int target) {
+        
+      if(matrix.length == 0) return false;
+
+      int m = matrix.length;// Total number of rows
+      int n = matrix[0].length;// Total number of columns
+      int start = 0; // Start index (in imaginary 1D array)
+      int end = m*n-1;// End index (last element in imaginary 1D array) 
+
+      while(start <= end){//Binary Search
+
+        int mid = start+(end-start)/2;
+
+         // Convert the mid index in 1D to row and column in 2D
+        int r =  mid/n; //row number
+        int c = mid % n;  //column number 
+        // Get the value at the calculated row and column
+        int val = matrix[r][c];
+
+        if(val == target) return true;
+        else if(target < val) end = mid-1;
+        else start = mid+1;
+
+      }
+      return false;//Target not found
+    }
+}
