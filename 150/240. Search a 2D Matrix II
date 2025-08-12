@@ -1,0 +1,23 @@
+class Solution {//T.C ->= O(rows+cols) S.C ->= O(1)
+    public boolean searchMatrix(int[][] matrix, int target) {
+        
+        if(matrix.length == 0) return false;
+        int rows = matrix.length; // Number of rows
+        int cols = matrix[0].length;  // Number of columns
+        int r = 0;// Start from first row
+        int c = cols-1;// Start from last column (top-right corner)
+
+        while(r < rows && c >= 0){
+
+            if(matrix[r][c] == target) return true;
+         // Target is smaller → move left (reduce column index)
+            else if(target < matrix[r][c]){
+                c = c-1; 
+            }
+            else {
+                r = r + 1; // Target is larger → move down (increase row index)
+            }
+        }
+        return false;
+    }
+}
