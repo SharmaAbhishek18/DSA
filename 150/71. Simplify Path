@@ -1,0 +1,17 @@
+class Solution {//T.c -> O(N) S.C->O(N)
+    public String simplifyPath(String path) {
+        
+        String [] tokens = path.split("/+");
+        Stack <String> stack = new Stack();
+
+        for(String t:tokens){
+// If token is ".." and stack is not empty → go one directory up (pop last entry)
+            if(stack.size() > 0 && "..".equals(t))
+                stack.pop();
+            else if(!Arrays.asList("",".","..").contains(t))
+                stack.push(t);
+        }
+//"Always start with / (root). // If the stack has directories, join them with / between each. // If the stack is empty, just return /."
+        return "/" + String.join("/",stack);   
+    }
+}
