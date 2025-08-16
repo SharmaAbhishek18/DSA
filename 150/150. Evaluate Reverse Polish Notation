@@ -1,0 +1,27 @@
+class Solution { // T.C->O(N) S.C->O(N)
+    public int evalRPN(String [] tokens) {
+
+        String expStr  = "*/-+";
+        // Stack will store integers directly
+        Stack<Integer> stack = new Stack<>();
+        for (String token : tokens) {
+            if (expStr.contains(token)) {
+                // Pop operands (order matters)
+                int num2 = stack.pop();//-12
+                int num1 = stack.pop();//3
+                
+                int result = 0;
+                switch (token) {
+                    case "+" -> result = num1 + num2;
+                    case "-" -> result = num1 - num2;
+                    case "*" -> result = num1 * num2;
+                    case "/" -> result = num1 / num2; // given: num2 != 0
+                }
+                stack.push(result);
+            }// Convert number string to integer and push 
+            else  stack.push(Integer.parseInt(token));
+        }
+        // Only one element left in stack → final answer
+        return stack.peek();
+    }
+}
