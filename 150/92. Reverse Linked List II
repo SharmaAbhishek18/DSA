@@ -1,0 +1,23 @@
+
+class Solution {//T.C->O(N) S.C->O(1)
+    public ListNode reverseBetween(ListNode head, int left, int right) {
+
+        if(head == null || head.next == null) return head;
+
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+
+        ListNode prev = dummy;
+        for(int i = 1;i<left;i++){
+            prev = prev.next; //Move prev to the node just before the left position.
+        }
+        ListNode curr = prev.next;
+        for(int i = 1; i <= right-left;i++){
+            ListNode temp = prev.next;// save the node after prev
+            prev.next = curr.next; // link prev to the next node to reverse
+            curr.next = curr.next.next; // skip ahead in the list
+            prev.next.next = temp;  // insert node at front of sublist
+        }
+        return dummy.next;
+    }
+}
