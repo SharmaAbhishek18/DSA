@@ -1,0 +1,20 @@
+//T.C:O(N) AND S.C O(N)
+class Solution {
+    public ListNode reverseList(ListNode head) {
+      
+        //USING STACK(LIFO)
+       Stack<Integer>stack = new Stack<>();
+       while(head != null){
+       stack.push(head.val);
+       head = head.next;
+       }
+       ListNode reversedList = new ListNode(Integer.MIN_VALUE);//-infinity
+       ListNode ptr = reversedList;
+    
+       while(!stack.isEmpty()){
+        ptr.next = new ListNode(stack.pop());
+        ptr = ptr.next;
+       }
+        return reversedList.next;
+    }
+}
