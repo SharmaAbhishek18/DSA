@@ -9,7 +9,7 @@ class Solution {//T.C- > O(N) S.C -> O(1)
             //Calculating area for the conatiner with most water
             int area = Math.min(height[left],height[right])*(right-left);
             maxArea = Math.max(area,maxArea);
-           
+        
             if(height[left] < height[right]) left++;
             else right--;
         }
