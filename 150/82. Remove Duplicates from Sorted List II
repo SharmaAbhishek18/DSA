@@ -1,0 +1,23 @@
+class Solution {//T.C->O(N) S.C->O(1)
+    public ListNode deleteDuplicates(ListNode head) {
+        ListNode dummy = new ListNode(0,head); //dummy node value 0 and pointing to head
+        ListNode prev = dummy;
+        ListNode curr = head;
+
+        while(curr != null){
+            //If the current Node is a Duplicate
+            if(curr.next != null && curr.val == curr.next.val){
+                //Move to the last Duplicated Node
+                while(curr.next != null && curr.val == curr.next.val){
+                    curr = curr.next;
+                }
+                prev.next = curr.next;//skip the duplicated Nodes
+            }
+            else{//else we found a Unique Node
+                prev = prev.next;
+            }
+            curr = curr.next;
+        }
+    return dummy.next;
+    }
+}
