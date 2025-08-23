@@ -1,0 +1,25 @@
+class Solution {//T.C->O(N) S.C -> O(1)
+    public ListNode partition(ListNode head, int x) {
+        ListNode small = new ListNode(0); // Dummy heads for 2 lists
+        ListNode large = new ListNode(0);
+
+        ListNode smallP = small; // Pointers for building the lists
+        ListNode largeP = large;
+
+        while(head != null){
+            if(head.val < x){
+                smallP.next = head;// Attach to "small" list
+                smallP = smallP.next;//move pointer forward
+            }
+            else{
+                largeP.next = head;// Attach to "large" list
+                largeP = largeP.next;
+            }
+            head = head.next;// Move forward in original list
+        } 
+// join small list with start of large list
+    smallP.next = large.next; 
+    largeP.next = null; // important: terminate list
+    return small.next;   // skip dummy and return real head
+    }
+}
