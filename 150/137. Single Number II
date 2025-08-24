@@ -11,3 +11,30 @@ class Solution {//T.C->O(N) and S.C->O(1)
     return -1;
     }
 }
+
+
+class Solution {
+    public int singleNumber(int[] nums) {
+        int result = 0;
+
+        // Check each of 32 bits
+        for (int i = 0; i < 32; i++) {
+            int mask = (1 << i);
+            int countOnes = 0;
+
+            // Count how many numbers have this bit set
+            for (int num : nums) {
+                if ((num & mask) != 0) {
+                    countOnes++;
+                }
+            }
+
+            // If remainder is 1, set this bit in result
+            if (countOnes % 3 != 0) {
+                result |= mask;
+            }
+        }
+
+        return result;
+    }
+}
