@@ -1,0 +1,46 @@
+class Solution {
+    public int findDuplicate(int[] nums) {
+        //Brute Force Approach T.C->O(nlogn) S.C->O(1)
+        Arrays.sort(nums);
+        for(int i = 1; i < nums.length; i++){
+            if(nums[i] == nums[i-1]) return nums[i];
+        }
+    return  -1;
+    }
+}
+
+class Solution {
+    public int findDuplicate(int[] nums) {
+        //Brute Force Approach T.C->O(n) S.C->O(N)
+        Set<Integer> set = new HashSet<>();
+        for(int n:nums){
+        //“Try to add n to the set. If it was already there (duplicate), return it.”
+            if(!set.add(n)) return n;
+        }
+    return -1;
+    }
+}
+
+OPTIMAL ONE ::
+class Solution {
+    public int findDuplicate(int[] nums) {
+        int slow = 0, fast = 0;
+
+        // Step 1: Move until they meet inside the cycle
+        do {
+            slow = nums[slow];
+            fast = nums[nums[fast]];
+        } while (slow != fast);
+
+        // Step 2: Move slow to start, keep fast at meeting point
+        slow = 0;
+
+        // Step 3: Move both at same speed, they’ll meet at duplicate
+        while (slow != fast) {
+            slow = nums[slow];
+            fast = nums[fast];
+        }
+
+        return slow; // or fast, both are same
+    }
+}
