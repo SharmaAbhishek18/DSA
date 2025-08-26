@@ -2,13 +2,13 @@ class Solution {//T.C- >O(N) S.C -> O(1)
     public boolean isPalindrome(int x) {
         
         if(x < 0) return false;
-
-        int reversed = 0, inputValue = x;
-        while(inputValue != 0){
-            int lastDigit  = inputValue % 10;
-            reversed = reversed * 10 + lastDigit;
-            inputValue = inputValue / 10;
+        int original = x;
+        int rev = 0;
+        while(x != 0){
+            int digit  = x % 10;
+            rev = rev * 10 + digit;
+            x = x / 10;
         }
-        return x == reversed;//will return true or false
+        return original == rev;//will return true or false
     }
 }
