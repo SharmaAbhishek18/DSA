@@ -1,0 +1,22 @@
+class Solution {//Time: O(n) Space: O(1)
+    public int areaOfMaxDiagonal(int[][] dimensions) {
+        int maxDiag = 0;
+        int maxArea = 0;
+
+        for(int  i =0; i < dimensions.length; i++){
+            int len = dimensions[i][0];
+            int wid = dimensions[i][1];
+
+            int diag = len*len + wid*wid;
+            int area = len*wid;
+            // found bigger diagonal → update both
+            if(diag > maxDiag){
+                maxDiag = diag;
+                maxArea = area;
+            }else if (diag == maxDiag){// diagonals are equal → choose bigger area
+                maxArea = Math.max(maxArea,area);
+            }
+        }
+    return maxArea;
+    }
+}
