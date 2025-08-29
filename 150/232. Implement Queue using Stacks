@@ -1,4 +1,4 @@
-class MyQueue {//push(): O(1) pop(), peek(), empty(): O(1) 
+class MyQueue {//push(): O(1) pop(), peek(), empty(): O(1) Better Optimal Solution
     Stack<Integer>stack1;
     Stack<Integer>stack2;
     public MyQueue() {
@@ -28,11 +28,38 @@ class MyQueue {//push(): O(1) pop(), peek(), empty(): O(1)
     }
 }
 
-/**
- * Your MyQueue object will be instantiated and called as such:
- * MyQueue obj = new MyQueue();
- * obj.push(x);
- * int param_2 = obj.pop();
- * int param_3 = obj.peek();
- * boolean param_4 = obj.empty();
- */
+Approach 2 T.c->push->o(n) rest o(1)
+class MyQueue {//push(): O(n) pop(), peek(), empty(): O(1) 
+    Stack<Integer>stack1;
+    Stack<Integer>stack2;
+    public MyQueue() {
+        stack1 = new Stack();
+        stack2 = new Stack();
+    }
+    public void push(int x) {
+    //First every element is pushed into the stack and if a new element comes(say after pop)
+    //then from stack 2 pop out all the elements->push it into stack 1 and the new element
+    //is now pushed into the stack2 directly
+        while(!stack2.isEmpty()){
+            stack1.push(stack2.pop());
+        }
+        stack2.push(x);//now pushed into the stack2 directly
+    //till stack1 get empty pushed it elements into the stack 2
+        while(!stack1.isEmpty()){
+            stack2.push(stack1.pop());
+        } 
+    }
+    
+    public int pop() {
+        return stack2.pop();
+    }
+    
+    public int peek() {
+        return stack2.peek();
+    }
+    
+    public boolean empty() {
+        return stack2.isEmpty();
+    }
+}
+
