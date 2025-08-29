@@ -1,4 +1,4 @@
-class MyQueue {//push(): O(1) pop(), peek(), empty(): O(1) 
+class MyQueue {//push(): O(1) pop(), peek(), empty(): O(1) Better Optimal Solution
     Stack<Integer>stack1;
     Stack<Integer>stack2;
     public MyQueue() {
