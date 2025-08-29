@@ -1,0 +1,38 @@
+class MyQueue {//push(): O(1) pop(), peek(), empty(): O(1) 
+    Stack<Integer>stack1;
+    Stack<Integer>stack2;
+    public MyQueue() {
+        stack1 = new Stack();
+        stack2 = new Stack();
+    }
+    public void push(int x) {
+        stack1.push(x);
+    }
+    public int pop() {
+        peek();
+        return stack2.pop();
+    }
+    public int peek() {
+        if(stack2.empty()){
+        //if stack2 is empty then just pop() the elements from the stack1->push->stack2
+            while(!stack1.empty()){
+                stack2.push(stack1.pop());
+            }
+        }
+        return stack2.peek();
+    }
+    //we have to check both the stack are empty because what if only push oper happen then
+    //we have to check both stack are empty or not 
+    public boolean empty() {
+        return stack1.empty() && stack2.empty();
+    }
+}
+
+/**
+ * Your MyQueue object will be instantiated and called as such:
+ * MyQueue obj = new MyQueue();
+ * obj.push(x);
+ * int param_2 = obj.pop();
+ * int param_3 = obj.peek();
+ * boolean param_4 = obj.empty();
+ */
