@@ -1,0 +1,61 @@
+
+// Stack property: LIFO (last in → first out).
+// But a queue is FIFO (first in → first out).
+// To simulate stack behavior with one queue:
+// When you push, insert the element into the queue.
+// Then rotate the queue (by polling and adding back all previous elements) so that the newly added element comes to the front.
+// That way, the front of the queue always represents the top of the stack.
+
+class MyStack {//Using One Queue T.C->O(N)
+
+    Queue<Integer>queue;
+
+    public MyStack() {
+        queue = new LinkedList();
+    }
+    public void push(int x) {
+      int size = queue.size();
+      queue.add(x);
+      while(size --> 0){
+        queue.add(queue.poll());//same queue first poll and then add
+      }
+    }
+    public int top() {
+       return queue.peek();     
+    }
+    public int pop() {
+       return queue.poll();     
+    }
+    public boolean empty() {
+        return queue.isEmpty();
+    }
+}
+
+
+class MyStack { //using Two queues
+    Queue<Integer>queue1;
+    Queue<Integer>queue2;
+
+    public MyStack() {
+        queue1 = new LinkedList<>();
+        queue2 = new LinkedList<>();
+    }
+    public void push(int x) {
+       while(!queue2.isEmpty()){
+            queue1.add(queue2.poll());
+       } 
+       queue2.add(x);
+       while(!queue1.isEmpty()){
+            queue2.add(queue1.poll());
+       }       
+    }
+    public int top() {
+       return queue2.peek();     
+    }
+    public int pop() {
+       return queue2.poll();     
+    }
+    public boolean empty() {
+        return queue2.isEmpty();
+    }
+}
