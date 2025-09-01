@@ -8,7 +8,7 @@
 
 class MyStack {//Using One Queue T.C->O(N)
 
-    Queue<Integer>queue;
+    Queue<Integer>queue
 
     public MyStack() {
         queue = new LinkedList();
