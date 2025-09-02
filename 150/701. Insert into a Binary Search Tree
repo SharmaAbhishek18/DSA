@@ -1,0 +1,17 @@
+class Solution {
+    public TreeNode insertIntoBST(TreeNode root, int val) {
+        // Case 1: Empty spot found → create new node
+        if(root == null) return new TreeNode(val);
+        // Case 2: Insert into left subtree
+        else if(root.val > val){
+            root.left = insertIntoBST(root.left,val);
+        // Case 3: Insert into right subtree    
+        }else {
+            root.right = insertIntoBST(root.right,val);
+        }
+        // Return unchanged root pointer
+        return root;
+    }
+}
+
+
