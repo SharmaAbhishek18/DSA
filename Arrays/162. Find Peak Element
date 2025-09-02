@@ -1,0 +1,24 @@
+class Solution {//Time: O(log n) Space: O(1) 
+    public int findPeakElement(int[] nums) {
+        
+        int start = 0;
+        int end = nums.length - 1;
+
+        while (start < end) {
+            // Find middle index safely (avoid overflow)
+            int mid = start + (end - start) / 2;
+
+            // If mid element is less than its right neighbor,
+            // then the peak lies in the right half
+            if (nums[mid] <= nums[mid + 1]) {
+                start = mid + 1;
+            }
+            // Else, the peak lies in the left half (including mid)
+            else {
+                end = mid;
+            }
+        }
+     // When start == end, we’ve found a peak index
+        return start;
+    }
+}
