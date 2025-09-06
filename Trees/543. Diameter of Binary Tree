@@ -1,0 +1,19 @@
+class Solution {
+    int diameter = 0; //Global Variable
+
+    public int diameterOfBinaryTree(TreeNode root) {
+        height(root);
+        return diameter;
+    }
+    private int height(TreeNode root) {
+        
+        if (root == null) return 0;
+        // Recursively calculate height of left and right subtrees
+        int left = height(root.left);
+        int right = height(root.right);
+
+        diameter = Math.max(diameter, left + right);
+        // = max of left and right subtree height + 1 (for current edge)
+        return Math.max(left, right) + 1;
+    }
+}
