@@ -1,0 +1,23 @@
+class Solution {//Brute force Approach
+    public void flatten(TreeNode root) {
+
+       if(root == null) return;
+        Queue<TreeNode> q = new LinkedList<>();
+        preOrder(root, q);
+
+        // Rebuild the tree in linked-list form
+        TreeNode dummy = q.poll();
+        TreeNode curr = dummy;
+        while (!q.isEmpty()) {
+            curr.left = null;          // left must be null
+            curr.right = q.poll();     // right points to next node
+            curr = curr.right;
+        }
+    }
+    public void preOrder(TreeNode root,Queue<TreeNode>q){
+        if (root == null) return;
+        q.offer(root);
+        preOrder(root.left,q);
+        preOrder(root.right,q);
+    }
+}
