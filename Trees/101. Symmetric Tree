@@ -1,0 +1,22 @@
+/// RECURSIVE APPROACH T.C -> O(n) and S.C->O(h) h-height
+class Solution {
+    public boolean isSymmetric(TreeNode root) {
+        return isMirror(root,root);
+    }
+    public boolean isMirror(TreeNode t1 , TreeNode t2){
+
+        //If both the nodes are null then it is symmetric
+        if(t1 == null && t2 == null) return true;
+
+       //If one node is null and the other is not, they are not symmetric
+        if(t1 == null || t2 == null) return false;
+
+        //This line compares:>>>>
+        //The current node values.
+        //The left child of t1 with the right child of t2 and vice versa
+        return (t1.val == t2.val) 
+        && isMirror(t1.left,t2.right) 
+        && isMirror(t1.right,t2.left);
+
+    }
+}
