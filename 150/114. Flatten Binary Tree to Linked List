@@ -1,0 +1,21 @@
+class Solution { 
+    // Class-level pointer to keep track of the previously processed node
+    TreeNode nextRight = null;
+
+    // T.C -> O(N), S.C -> O(H) due to recursion stack (worst case H = N)
+    public void flatten(TreeNode root) {
+        if (root == null) return;
+
+        // Process right subtree first
+        flatten(root.right);
+        // Then left subtree
+        flatten(root.left);
+
+        // Modify pointers
+        root.left = null;       // flatten, so left must be null
+        root.right = nextRight; // connect current node to previously processed node
+
+        // Move pointer for next iteration
+        nextRight = root;
+    }
+}
