@@ -7,7 +7,7 @@ class Solution { //Time Complexity: O(n) Space Complexity: O(1)
         while (left < right) {
             
             char  leftChar = s.charAt(left);
-            char  rightChar = s.charAt(right);
+            char  rightChar = s.charAt(right); 
 
             if (!Character.isLetterOrDigit(leftChar)) {
                 left++;
