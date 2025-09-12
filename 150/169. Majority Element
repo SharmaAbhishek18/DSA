@@ -2,7 +2,6 @@ class Solution {//T.C -> O(N) S.C->O(1)
     public int majorityElement(int[] nums) { //Using Moore's Voting Algo.
         int count = 0;
         int candidate = nums[0];
-
         for(int i : nums){
             if(i == candidate){
                 count++;
