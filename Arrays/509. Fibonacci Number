@@ -1,0 +1,6 @@
+class Solution {//T.C->O(n^2) S.C->O(N)
+    public int fib(int n) {
+       if(n <= 1) return n;
+       return fib(n-1) + fib(n-2); 
+    }
+}
