@@ -13,3 +13,22 @@ class Solution {
     }
     
     }
+
+APPROACH - 2 T.C-> O(N) AND S.C->O(1)
+class Solution {
+    public int maxNumberOfBalloons(String text) {
+        int[] count = new int[26];
+        for (char c : text.toCharArray()) {
+            count[c - 'a']++;
+        }
+
+        // balloon → b(1), a(1), l(2), o(2), n(1)
+        int min = count['b' - 'a'];
+        min = Math.min(min, count['a' - 'a']);
+        min = Math.min(min, count['l' - 'a'] / 2);
+        min = Math.min(min, count['o' - 'a'] / 2);
+        min = Math.min(min, count['n' - 'a']);
+
+        return min;
+    }
+}
