@@ -13,3 +13,23 @@ class Solution {//T.C->	O(N * K log K) S.C -> O(N * K)
         return  new ArrayList<>(map.values());
     }
 }
+
+
+import java.util.*;
+class Solution { // T.C -> O(N * K), S.C -> O(N * K)
+   public List<List<String>> groupAnagrams(String[] strs) {
+
+        Map<String, List<String>> map = new HashMap<>();
+
+        for(String word : strs){
+            int [] freq = new int[26];
+           for(char c : word.toCharArray()){
+            freq[c - 'a']++;
+           } 
+        String key =   Arrays.toString(freq);
+        map.computeIfAbsent(key,k-> new ArrayList<>()).add(word);
+        }
+        return new ArrayList<>(map.values());
+    }
+}
+
