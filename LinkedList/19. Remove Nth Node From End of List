@@ -1,0 +1,21 @@
+//First traverse the fast pointer till n then move both fast and slow pointer one step each
+//The moment when fast reaches end then the next of slow is the element to be deleted so
+//connect slow.next = slow.next.next
+class Solution {// T.C -> O(N), S.C -> O(1)
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+       
+      ListNode slow = head,fast = head;
+      for(int i = 0; i < n; i++){
+        fast = fast.next;
+      }
+      if(fast == null) return head.next;
+      while(fast != null && fast.next != null){
+        slow = slow.next;
+        fast = fast.next;
+      }
+      if(slow != null && slow.next != null){
+        slow.next = slow.next.next;
+      }
+      return head;
+    }
+}
