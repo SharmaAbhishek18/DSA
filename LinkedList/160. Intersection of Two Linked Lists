@@ -11,3 +11,19 @@ public class Solution {//T.c->O(m*n) S.C->O(1')
         return null;
     }
 }
+
+
+public class Solution {//T.C->O(m+n) S.C->O(m)
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+       Set <ListNode> set = new HashSet<>();
+       while(headA != null){
+        set.add(headA);
+        headA = headA.next;
+       }
+       while(headB != null){
+        if(set.contains(headB)) return headB;
+        headB = headB.next;
+       }
+    return null;
+    }
+}
