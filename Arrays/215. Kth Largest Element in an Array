@@ -1,0 +1,13 @@
+class Solution {//Time: O(n log k) → Each insert/remove takes log k Space: O(k)
+    public int findKthLargest(int[] nums, int k) {
+        PriorityQueue<Integer> pq = new PriorityQueue<>(k + 1); // min-heap
+        
+        for (int i : nums) {
+            pq.add(i);
+            if (pq.size() > k) {
+                pq.poll(); // remove smallest when heap exceeds size k
+            }
+        }
+        return pq.poll(); // top of heap is kth largest
+    }
+}
