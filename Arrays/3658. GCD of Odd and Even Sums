@@ -1,0 +1,13 @@
+class Solution {//T.c->O(log(min(a,b)))
+    public int gcdOfOddEvenSums(int n) {
+        int sumOdd = n * n;
+        int sumEven = n * (n + 1);
+        return findgcd(sumOdd,sumEven);
+    }
+    private int findgcd(int number1 ,int number2){
+        if(number2 == 0){
+            return number1;
+        }
+        return findgcd(number2,number1 % number2);
+    }
+}
