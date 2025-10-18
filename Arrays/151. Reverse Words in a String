@@ -12,3 +12,18 @@ class Solution {//Time Complexity: O(n) Space Complexity: O(n)
         return sb.toString().trim();//removing trailing or leading spaces 
     }
 }
+class Solution {
+    public String reverseWords(String s) {
+        s = s.trim();                      // Step 1
+        String[] words = s.split("\\s+");  // Step 2
+        int left = 0, right = words.length - 1;
+        while (left < right) {             // Step 3
+            String temp = words[left];
+            words[left] = words[right];
+            words[right] = temp;
+            left++;
+            right--;
+        }
+        return String.join(" ", words);    // Step 4
+    }
+}
