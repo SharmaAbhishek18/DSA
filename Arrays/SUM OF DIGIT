@@ -1,0 +1,29 @@
+import java.util.Scanner;
+
+public class SumOfDigits {
+
+    public int calculateSumOfDigits(int number) {
+        int sum = 0;
+        int n = Math.abs(number); // Handle potential negative input
+
+        while (n > 0) {
+            int digit = n % 10;
+            sum += digit;
+            n /= 10;
+        }
+        return sum;
+    }
+
+    public static void main(String[] args) {
+        SumOfDigits calculator = new SumOfDigits();
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter an integer: ");
+        int num = scanner.nextInt();
+
+        int result = calculator.calculateSumOfDigits(num);
+        System.out.println("Sum of digits: " + result);
+
+        scanner.close();
+    }
+}
