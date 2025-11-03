@@ -4,7 +4,7 @@ class Solution {//T.C->O(n^2) S.C->O(N)
        return fib(n-1) + fib(n-2); 
     }
 }
-APPROACH 2 ->>>>>>>>
+APPROACH 2 ->>>>>>>> 
 
 class Solution {//T.C->O(n) S.C->O(1)
     public int fib(int n) { // Bottom - up  Approach (Tabulation)
