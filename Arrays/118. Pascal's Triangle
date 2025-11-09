@@ -1,27 +1,18 @@
 class Solution {
-    public List<List<Integer>> generate(int numRows) { //T.C(O(N)^2)
-      
-        List<List<Integer>> triangle = new ArrayList<>();
-        List<Integer> first_row = new ArrayList<>();
+    public List<List<Integer>> generate(int numRows) {
+        List<List<Integer>> result = new ArrayList<>();
 
-        first_row.add(1);//0th Location 
-        triangle.add(first_row);
-
-        for(int i = 1; i < numRows; i++){
-            //i=1 -> triangle.get(1-1 = 0)-> 0th row
-            List<Integer> prev_Row = triangle.get(i-1);
-            List<Integer> curr_Row = new ArrayList<>();
-
-            curr_Row.add(1);
-
-             for(int j = 1; j < i; j++){
-                 curr_Row.add(prev_Row.get(j - 1) + prev_Row.get(j));
+        for (int i = 0; i < numRows; i++) {
+            List<Integer> row = new ArrayList<>();
+            int num = 1;                   // First value of every row is always 1
+            for (int j = 0; j <= i; j++) {
+                row.add(num);
+                // Generate next number using binomial relation
+                num = num * (i - j) / (j + 1);
             }
-            curr_Row.add(1);
-            
-            triangle.add(curr_Row);
-
+            result.add(row);
         }
-        return triangle;
+
+        return result;
     }
 }
